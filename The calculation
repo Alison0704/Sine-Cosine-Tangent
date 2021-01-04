@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+#define PI 3.1415926535897932384626433832
+int num()
+{
+    int value = -1;
+    while((value != 1)&(value != 2)&(value != 3))
+    {
+        cout << "The choice:";
+        cin >> value;
+    }
+    return(value);
+}
+double cosine(double angle_rad)
+{
+    double sum = 1, term = 1, ans;
+    int i;
+    for(i = 1;i<1000;i = i + 2)
+    {
+        term = -1*term*((angle_rad*angle_rad)/((i+1)*i));
+        sum = sum + term;
+    }
+    ans = sum;
+    return (ans);
+}
+double sine(double angle_rad)
+{
+    double ans;
+    ans = cosine((PI/2) - angle_rad);
+    return (ans);
+}
+double tangent(double angle_rad)
+{
+    double cos,sin,ans;
+    cos = cosine(angle_rad);
+    sin = sine(angle_rad);
+    ans = sin / cos;
+    return (ans);
+}
+int main()
+{
+    double angle, rad_angle, answer = 0;
+    int choice;
+    cout << "==========TRIGONOMETRY CALCULATION========="<< endl;
+    cout << "Enter angle:";
+    cin >> angle;
+
+    rad_angle = PI/(180/angle);
+
+    cout << "What you want to calculate with this angle?" << endl;
+    cout << "Press 1 for sine calculation." << endl;
+    cout << "Press 2 for cosine calculation." << endl;
+    cout << "Press 3 for tangent calculation." << endl;
+
+    choice = num();
+    if (choice == 1)
+    {
+        answer = sine(rad_angle);
+        cout << "sin(" << angle << ") = "<< answer << endl;
+    }
+    if (choice == 2)
+    {
+        answer = cosine(rad_angle);
+        cout << "cos(" << angle << ") = "<< answer << endl;
+    }
+    if (choice == 3)
+    {
+        answer = tangent(rad_angle);
+        cout << "tan(" << angle << ") = "<< answer << endl;
+    }
+    return 0;
+}
+
